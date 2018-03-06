@@ -66,7 +66,7 @@ public class BandwidthNetwork extends HybridSystem<BandwidthNetworkState> implem
 	@Override
 	public void G(BandwidthNetworkState arg0, BandwidthNetworkState arg1)
 	{
-
+		performOrganizationalTasks();
 		//		performCleanupTasks();
 		//		performOrganizationalTasks();
 		for (Connection conn : topology.edgeSet())

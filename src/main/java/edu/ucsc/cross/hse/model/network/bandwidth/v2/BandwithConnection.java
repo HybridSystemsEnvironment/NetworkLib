@@ -113,7 +113,7 @@ public class BandwithConnection extends DataStructure implements Connection
 
 	public boolean handleCompletion()
 	{
-		//decrementTimes();
+		decrementTimes();
 		boolean completion = false;
 		ArrayList<Packet> remove = new ArrayList<Packet>();
 		for (Packet pack : transferBuffer.keySet())
@@ -121,6 +121,7 @@ public class BandwithConnection extends DataStructure implements Connection
 			if (0 >= transferBuffer.get(pack))
 			{
 				remove.add(pack);
+				getTarget().deliverPacket(pack);
 				completion = true;
 			}
 		}
