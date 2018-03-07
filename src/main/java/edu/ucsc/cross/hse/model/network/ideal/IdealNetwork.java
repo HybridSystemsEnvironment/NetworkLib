@@ -32,7 +32,7 @@ public class IdealNetwork extends HybridSystem<IdealNetworkState> implements Net
 	public boolean C(IdealNetworkState x)
 	{
 		// TODO Auto-generated method stub
-		return true;
+		return true && !D(x);
 	}
 
 	@Override

@@ -68,9 +68,9 @@ public class BandwithConnection extends DataStructure implements Connection
 		return true;
 	}
 
-	public boolean decrementTimes()
+	public void decrementTimes()
 	{
-		boolean lower = false;
+
 		double time = HybridTime.getEnvironmentTime();
 
 		for (Packet pack : transferBuffer.keySet())
@@ -81,9 +81,9 @@ public class BandwithConnection extends DataStructure implements Connection
 			Double remaining = transferBuffer.get(pack) - transferred;
 			startTime.put(pack, time);
 			transferBuffer.put(pack, remaining);
-			lower = lower || (remaining <= 0.0);
+
 		}
-		return lower;
+
 	}
 
 	public void newPacket(Packet packet)
@@ -121,7 +121,7 @@ public class BandwithConnection extends DataStructure implements Connection
 			if (0 >= transferBuffer.get(pack))
 			{
 				remove.add(pack);
-				getTarget().deliverPacket(pack);
+				//getTarget().deliverPacket(pack);
 				completion = true;
 			}
 		}

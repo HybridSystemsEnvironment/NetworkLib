@@ -37,23 +37,14 @@ public class BandwidthNetwork extends HybridSystem<BandwidthNetworkState> implem
 	@Override
 	public boolean C(BandwidthNetworkState arg0)
 	{
-		// TODO Auto-generated method stub
-		return true;
+
+		return false;
 	}
 
 	@Override
 	public boolean D(BandwidthNetworkState arg0)
 	{
-		for (Connection conn : topology.edgeSet())
-		{
-			BandwithConnection con = (BandwithConnection) conn;
-			if (con.decrementTimes())//(conn.successfulTransfers().size() > 0 || conn.failedTransfers().size() > 0)
-			{
-				return true;
-			}
-
-		}
-		return false;
+		return tasksPending();
 	}
 
 	@Override
@@ -66,9 +57,9 @@ public class BandwidthNetwork extends HybridSystem<BandwidthNetworkState> implem
 	@Override
 	public void G(BandwidthNetworkState arg0, BandwidthNetworkState arg1)
 	{
+		//performOrganizationalTasks();
+		performCleanupTasks();
 		performOrganizationalTasks();
-		//		performCleanupTasks();
-		//		performOrganizationalTasks();
 		for (Connection conn : topology.edgeSet())
 		{
 			BandwithConnection con = (BandwithConnection) conn;
@@ -77,6 +68,7 @@ public class BandwidthNetwork extends HybridSystem<BandwidthNetworkState> implem
 			}
 
 		}
+		//performCleanupTasks();
 	}
 
 	public boolean tasksPending()
